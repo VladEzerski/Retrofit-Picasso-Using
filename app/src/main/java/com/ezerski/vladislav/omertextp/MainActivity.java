@@ -24,6 +24,17 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.ezerski.vladislav.omertextp.storage.URLStorage.URL1;
+import static com.ezerski.vladislav.omertextp.storage.URLStorage.URL10;
+import static com.ezerski.vladislav.omertextp.storage.URLStorage.URL2;
+import static com.ezerski.vladislav.omertextp.storage.URLStorage.URL3;
+import static com.ezerski.vladislav.omertextp.storage.URLStorage.URL4;
+import static com.ezerski.vladislav.omertextp.storage.URLStorage.URL5;
+import static com.ezerski.vladislav.omertextp.storage.URLStorage.URL6;
+import static com.ezerski.vladislav.omertextp.storage.URLStorage.URL7;
+import static com.ezerski.vladislav.omertextp.storage.URLStorage.URL8;
+import static com.ezerski.vladislav.omertextp.storage.URLStorage.URL9;
+
 public class MainActivity extends AppCompatActivity {
 
 
@@ -35,10 +46,7 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     Button btnLoadText;
     Button btnLoadImage;
-
-    ImageView imageView;
-
-    ListView listView;
+    Button btnShowUnionList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,33 +61,11 @@ public class MainActivity extends AppCompatActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-
-
-        imageView = findViewById(R.id.imageView);
-
-        listView = findViewById(R.id.images_list_view);
-
         btnLoadText = findViewById(R.id.btnLoadText);
         btnLoadText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                Adapter adapter = new Adapter(users);
-                recyclerView.setAdapter(adapter);
-
-                api.getData(2).enqueue(new Callback<List<UserModel>>() {
-                    @Override
-                    public void onResponse(Call<List<UserModel>> call, Response<List<UserModel>> response) {
-                        users.addAll(response.body());
-                        recyclerView.getAdapter().notifyDataSetChanged();
-                    }
-
-                    @Override
-                    public void onFailure(Call<List<UserModel>> call, Throwable t) {
-                        Toast.makeText(MainActivity.this, "Loading error", Toast.LENGTH_SHORT)
-                                .show();
-                    }
-                });
+                loadText();
             }
         });
 
@@ -93,6 +79,55 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+            }
+        });
+
+        btnShowUnionList = findViewById(R.id.btnShowUnionList);
+        btnShowUnionList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                loadText();
+            }
+        });
+    }
+
+    private void addUrlToList(){
+        urls.add(URL1);
+        urls.add(URL2);
+        urls.add(URL3);
+        urls.add(URL4);
+        urls.add(URL5);
+        urls.add(URL6);
+        urls.add(URL7);
+        urls.add(URL8);
+        urls.add(URL9);
+        urls.add(URL10);
+    }
+
+    private void loadText(){
+        addUrlToList();
+
+        Adapter adapter = new Adapter(users, urls, new Adapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(UserModel user) {
+                Intent intent = new Intent(getApplicationContext(), ImageActivity.class);
+                startActivity(intent);
+            }
+        });
+        recyclerView.setAdapter(adapter);
+
+
+        api.getData(2).enqueue(new Callback<List<UserModel>>() {
+            @Override
+            public void onResponse(Call<List<UserModel>> call, Response<List<UserModel>> response) {
+                users.addAll(response.body());
+                recyclerView.getAdapter().notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFailure(Call<List<UserModel>> call, Throwable t) {
+                Toast.makeText(MainActivity.this, "Loading error", Toast.LENGTH_SHORT)
+                        .show();
             }
         });
     }

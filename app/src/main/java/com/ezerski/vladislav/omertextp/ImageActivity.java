@@ -12,17 +12,18 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.ezerski.vladislav.omertextp.storage.URLStorage.URL1;
+import static com.ezerski.vladislav.omertextp.storage.URLStorage.URL2;
+import static com.ezerski.vladislav.omertextp.storage.URLStorage.URL3;
+import static com.ezerski.vladislav.omertextp.storage.URLStorage.URL4;
+import static com.ezerski.vladislav.omertextp.storage.URLStorage.URL5;
+import static com.ezerski.vladislav.omertextp.storage.URLStorage.URL6;
+import static com.ezerski.vladislav.omertextp.storage.URLStorage.URL7;
+import static com.ezerski.vladislav.omertextp.storage.URLStorage.URL8;
+import static com.ezerski.vladislav.omertextp.storage.URLStorage.URL9;
+import static com.ezerski.vladislav.omertextp.storage.URLStorage.URL10;
+
 public class ImageActivity extends AppCompatActivity {
-    public static final String URL1 = "https://i.imgur.com/tXtwrPd.jpg";
-    public static final String URL2 = "https://i.imgur.com/sduLRvf.jpg";
-    public static final String URL3 = "https://i.imgur.com/IVyU5Im.jpg";
-    public static final String URL4 = "https://i.imgur.com/QguApMA.jpg";
-    public static final String URL5 = "https://i.imgur.com/Xulubox.jpg";
-    public static final String URL6 = "https://i.imgur.com/yxovJ4S.jpg";
-    public static final String URL7 = "https://i.imgur.com/fNXT1wc.jpg";
-    public static final String URL8 = "https://i.imgur.com/gjEZAJ7.jpg";
-    public static final String URL9 = "https://i.imgur.com/JHHx0AD.jpg";
-    public static final String URL10 = "https://i.imgur.com/PnSeZX3.jpg";
 
 
     List<String> urls = new ArrayList<>();
