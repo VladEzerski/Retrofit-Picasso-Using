@@ -28,7 +28,7 @@ import java.util.List;
 public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
     public interface OnItemClickListener{
-        void onItemClick(UserModel user);
+        void onItemClick(UserModel user, int position);
     }
 
     private final OnItemClickListener listener;
@@ -52,7 +52,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, int position) {
         addUrlToList();
         UserModel user = users.get(position);
-        holder.bind(users.get(position), listener);
+        holder.bind(users.get(position), position, listener);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             holder.serverText.setText(Html.fromHtml(user.getBody(), Html.FROM_HTML_MODE_LEGACY));
         } else {
@@ -82,11 +82,11 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
             imageUrl = itemView.findViewById(R.id.unionListImageURL);
         }
 
-        public void bind(final UserModel user, final OnItemClickListener listener){
+        public void bind(final UserModel user, final int position, final OnItemClickListener listener){
              itemView.setOnClickListener(new View.OnClickListener() {
                  @Override
                  public void onClick(View view) {
-                     listener.onItemClick(user);
+                     listener.onItemClick(user, position);
                  }
              });
         }

@@ -1,4 +1,4 @@
-package com.ezerski.vladislav.omertextp;
+package com.ezerski.vladislav.omertextp.controllers;
 
 import com.ezerski.vladislav.omertextp.impl.Api;
 import com.google.gson.Gson;
